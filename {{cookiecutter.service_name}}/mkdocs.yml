@@ -1,0 +1,15 @@
+site_name: {{ cookiecutter.service_name }}
+site_description: {{ cookiecutter.service_description }}
+repo_url: https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.service_name }}
+repo_name: {{ cookiecutter.github_org }}/{{ cookiecutter.service_name }}
+
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - Runbook: runbook.md
+
+theme:
+  name: material
+
+plugins:
+  - techdocs-core

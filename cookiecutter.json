@@ -1,0 +1,14 @@
+{
+  "service_name": "my-service",
+  "service_description": "A new service on the Harness platform",
+  "service_type": ["fullstack", "backend", "frontend"],
+  "owner_email": "owner@harness.io",
+  "harness_account_id": "8INL1LHjRmmrZQKdYtlvKA",
+  "harness_org": "TPM",
+  "harness_project": "Diego",
+  "github_org": "diegopereiraeng",
+  "connector_ref": "account.DiegoProd",
+  "sonar_project_key": "{{ cookiecutter.service_name }}",
+  "coverage_threshold": "80",
+  "_copy_without_render": []
+}

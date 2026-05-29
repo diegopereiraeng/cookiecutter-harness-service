@@ -1,0 +1,29 @@
+apiVersion: harness.io/v1
+kind: API
+type: openapi
+identifier: {{ cookiecutter.service_name | replace('-', '_') }}_openapi
+name: {{ cookiecutter.service_name }} OpenAPI
+owner: group:account/_account_all_users
+spec:
+  lifecycle: production
+  definition:
+    $text: https://raw.githubusercontent.com/{{ cookiecutter.github_org }}/{{ cookiecutter.service_name }}/main/docs/openapi.yaml
+metadata:
+  description: |
+    {{ cookiecutter.service_name }} REST API — OpenAPI 3.0 spec auto-generated
+    from JSDoc annotations on every CI run.
+  annotations:
+    backstage.io/techdocs-ref: url:https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.service_name }}/tree/main
+    github.com/project-slug: {{ cookiecutter.github_org }}/{{ cookiecutter.service_name }}
+  tags:
+    - rest
+    - openapi
+    - nodejs
+  links:
+    - title: API Spec (raw)
+      url: https://raw.githubusercontent.com/{{ cookiecutter.github_org }}/{{ cookiecutter.service_name }}/main/docs/openapi.yaml
+      icon: code
+      type: documentation
+    - title: GitHub
+      url: https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.service_name }}/blob/main/docs/openapi.yaml
+      icon: github
