@@ -4,14 +4,15 @@ type: service
 identifier: {{ cookiecutter.service_name | replace('-', '_') }}_api
 name: {{ cookiecutter.service_name }} API
 owner: group:account/_account_all_users
+orgIdentifier: {{ cookiecutter.harness_org | replace('-', '_') }}
+projectIdentifier: {{ cookiecutter.harness_project | replace('-', '_') }}
 spec:
   lifecycle: production
   providesApis:
     - api:account/{{ cookiecutter.service_name | replace('-', '_') }}_openapi
   sourceCode:
-    provider: Github
+    provider: Harness
     repoName: {{ cookiecutter.service_name }}
-    connectorRef: {{ cookiecutter.connector_ref }}
     branch: main
     monoRepo: true
     monoRepoSubDirectoryPath: backend
