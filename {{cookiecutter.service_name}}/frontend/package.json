@@ -6,6 +6,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "test": "vitest run --coverage",
+    "test:ci": "vitest run --reporter=junit --outputFile=test-results/junit.xml",
     "lint": "eslint src --ext .ts,.tsx",
     "preview": "vite preview"
   },
@@ -18,6 +19,7 @@
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^1.1.0",
+    "jsdom": "^24.0.0",
     "typescript": "^5.3.3",
     "vite": "^5.0.8",
     "vitest": "^1.1.0"
