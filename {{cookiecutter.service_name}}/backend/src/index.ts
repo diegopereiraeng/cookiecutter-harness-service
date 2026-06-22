@@ -26,8 +26,10 @@ app.get('/health', (_req, res) => {
   res.json({ status: 'ok', service: '{{ cookiecutter.service_name }}', version: process.env.APP_VERSION || 'dev' })
 })
 
-app.listen(PORT, () => {
-  console.log(`🚀 {{ cookiecutter.service_name }}-api running on port ${PORT}`)
-})
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`🚀 {{ cookiecutter.service_name }}-api running on port ${PORT}`)
+  })
+}
 
 export default app
