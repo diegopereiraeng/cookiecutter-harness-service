@@ -9,23 +9,22 @@ projectIdentifier: {{ cookiecutter.harness_project | replace('-', '_') }}
 spec:
   lifecycle: production
   definition:
-    $text: https://raw.githubusercontent.com/{{ cookiecutter.github_org }}/{{ cookiecutter.service_name }}/main/docs/openapi.yaml
+    $text: https://app.harness.io/ng/account/{{ cookiecutter.harness_account_id }}/module/code/orgs/{{ cookiecutter.harness_org | replace('-', '_') }}/projects/{{ cookiecutter.harness_project | replace('-', '_') }}/repos/{{ cookiecutter.service_name }}/files/main/~/docs/openapi.yaml
 metadata:
   description: |
     {{ cookiecutter.service_name }} REST API — OpenAPI 3.0 spec auto-generated
     from JSDoc annotations on every CI run.
   annotations:
-    backstage.io/techdocs-ref: url:https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.service_name }}/tree/main
-    github.com/project-slug: {{ cookiecutter.github_org }}/{{ cookiecutter.service_name }}
+    backstage.io/techdocs-ref: url:https://app.harness.io/ng/account/{{ cookiecutter.harness_account_id }}/module/code/orgs/{{ cookiecutter.harness_org | replace('-', '_') }}/projects/{{ cookiecutter.harness_project | replace('-', '_') }}/repos/{{ cookiecutter.service_name }}/files/main/~/
   tags:
     - rest
     - openapi
     - nodejs
   links:
     - title: API Spec (raw)
-      url: https://raw.githubusercontent.com/{{ cookiecutter.github_org }}/{{ cookiecutter.service_name }}/main/docs/openapi.yaml
+      url: https://app.harness.io/ng/account/{{ cookiecutter.harness_account_id }}/module/code/orgs/{{ cookiecutter.harness_org | replace('-', '_') }}/projects/{{ cookiecutter.harness_project | replace('-', '_') }}/repos/{{ cookiecutter.service_name }}/files/main/~/docs/openapi.yaml
       icon: code
       type: documentation
-    - title: GitHub
-      url: https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.service_name }}/blob/main/docs/openapi.yaml
-      icon: github
+    - title: Harness Code Repo
+      url: https://app.harness.io/ng/account/{{ cookiecutter.harness_account_id }}/module/code/orgs/{{ cookiecutter.harness_org | replace('-', '_') }}/projects/{{ cookiecutter.harness_project | replace('-', '_') }}/repos/{{ cookiecutter.service_name }}/files/main/~/docs/openapi.yaml
+      icon: code
