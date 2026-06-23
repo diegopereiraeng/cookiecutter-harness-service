@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ cookiecutter.harness_project }}
+  labels:
+    app.kubernetes.io/managed-by: harness
+    harness.io/org: {{ cookiecutter.harness_org }}
+    harness.io/project: {{ cookiecutter.harness_project }}
