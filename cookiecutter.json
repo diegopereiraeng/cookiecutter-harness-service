@@ -3,7 +3,7 @@
   "service_description": "A new service on the Harness platform",
   "service_type": ["fullstack", "backend", "frontend"],
   "owner_email": "owner@harness.io",
-  "harness_account_id": "8INL1LHjRmmrZQKdYtlvKA",
+  "harness_account_id": "OIljsRhEThGoczsL24wUFw",
   "harness_org": "LAB",
   "harness_project": "my-app",
   "github_org": "diegopereiraeng",
