@@ -4,6 +4,8 @@ type: openapi
 identifier: {{ cookiecutter.service_name | replace('-', '_') }}_openapi
 name: {{ cookiecutter.service_name }} OpenAPI
 owner: group:account/_account_all_users
+orgIdentifier: {{ cookiecutter.harness_org | replace('-', '_') }}
+projectIdentifier: {{ cookiecutter.harness_project | replace('-', '_') }}
 spec:
   lifecycle: production
   definition:
