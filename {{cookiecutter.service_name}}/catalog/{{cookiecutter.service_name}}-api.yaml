@@ -26,13 +26,13 @@ metadata:
     harness.io/project-url: https://app.harness.io/ng/account/{{ cookiecutter.harness_account_id }}/orgs/{{ cookiecutter.harness_org }}/projects/{{ cookiecutter.harness_project }}
     harness.io/pipelines: |
       CI: https://app.harness.io/ng/account/{{ cookiecutter.harness_account_id }}/module/ci/orgs/{{ cookiecutter.harness_org }}/projects/{{ cookiecutter.harness_project }}/pipelines/{{ cookiecutter.service_name | replace('-', '_') }}_api_ci/
-    harness.io/sto-test-target:
-    - name: {{ cookiecutter.service_name }}
-      scope: {{ cookiecutter.harness_org | replace('-', '_') }}.{{ cookiecutter.harness_project | replace('-', '_') }}
-      variant: main
-    - name: {{ cookiecutter.service_name }}-api
-      scope: {{ cookiecutter.harness_org | replace('-', '_') }}.{{ cookiecutter.harness_project | replace('-', '_') }}
-      variant: main
+    # harness.io/sto-test-target:
+    # - name: {{ cookiecutter.service_name }}
+    #   scope: {{ cookiecutter.harness_org | replace('-', '_') }}.{{ cookiecutter.harness_project | replace('-', '_') }}
+    #   variant: main
+    # - name: {{ cookiecutter.service_name }}-api
+    #   scope: {{ cookiecutter.harness_org | replace('-', '_') }}.{{ cookiecutter.harness_project | replace('-', '_') }}
+    #   variant: main
   tags:
     - nodejs
     - typescript
