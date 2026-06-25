@@ -1,53 +1,53 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ cookiecutter.service_name }}-web
-  namespace: {{ cookiecutter.harness_project }}
+  name: {% raw %}{{ .Values.name }}{% endraw %}-web
+  namespace: {% raw %}{{ .Values.namespace }}{% endraw %}
   labels:
-    app: {{ cookiecutter.service_name }}-web
-    app.kubernetes.io/name: {{ cookiecutter.service_name }}-web
-    app.kubernetes.io/part-of: {{ cookiecutter.service_name }}
-    harness.io/service: {{ cookiecutter.service_name }}-web
+    app: {% raw %}{{ .Values.name }}{% endraw %}-web
+    app.kubernetes.io/name: {% raw %}{{ .Values.name }}{% endraw %}-web
+    app.kubernetes.io/part-of: {% raw %}{{ .Values.name }}{% endraw %}
+    version: {% raw %}{{ .Values.image.tag }}{% endraw %}
 spec:
-  replicas: 1
+  replicas: {% raw %}{{ .Values.replicaCount }}{% endraw %}
   selector:
     matchLabels:
-      app: {{ cookiecutter.service_name }}-web
+      app: {% raw %}{{ .Values.name }}{% endraw %}-web
   template:
     metadata:
       labels:
-        app: {{ cookiecutter.service_name }}-web
-        app.kubernetes.io/name: {{ cookiecutter.service_name }}-web
+        app: {% raw %}{{ .Values.name }}{% endraw %}-web
+        version: {% raw %}{{ .Values.image.tag }}{% endraw %}
     spec:
       containers:
         - name: web
-          image: <+artifact.image>
+          image: {% raw %}{{ .Values.image.repository }}:{{ .Values.image.tag }}{% endraw %}
           imagePullPolicy: Always
           ports:
             - name: http
-              containerPort: 80
+              containerPort: {% raw %}{{ .Values.containerPort }}{% endraw %}
               protocol: TCP
           env:
             - name: APP_VERSION
-              value: <+artifact.tag>
+              value: {% raw %}{{ .Values.image.tag }}{% endraw %}
           resources:
             requests:
-              memory: "64Mi"
-              cpu: "50m"
+              memory: {% raw %}{{ .Values.resources.requests.memory }}{% endraw %}
+              cpu: {% raw %}{{ .Values.resources.requests.cpu }}{% endraw %}
             limits:
-              memory: "128Mi"
-              cpu: "200m"
+              memory: {% raw %}{{ .Values.resources.limits.memory }}{% endraw %}
+              cpu: {% raw %}{{ .Values.resources.limits.cpu }}{% endraw %}
           readinessProbe:
             httpGet:
               path: /
-              port: 80
+              port: {% raw %}{{ .Values.containerPort }}{% endraw %}
             initialDelaySeconds: 10
             periodSeconds: 5
             failureThreshold: 3
           livenessProbe:
             httpGet:
               path: /
-              port: 80
+              port: {% raw %}{{ .Values.containerPort }}{% endraw %}
             initialDelaySeconds: 20
             periodSeconds: 10
             failureThreshold: 3

@@ -1,57 +1,57 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ cookiecutter.service_name }}-api
-  namespace: {{ cookiecutter.harness_project }}
+  name: {% raw %}{{ .Values.name }}{% endraw %}-api
+  namespace: {% raw %}{{ .Values.namespace }}{% endraw %}
   labels:
-    app: {{ cookiecutter.service_name }}-api
-    app.kubernetes.io/name: {{ cookiecutter.service_name }}-api
-    app.kubernetes.io/part-of: {{ cookiecutter.service_name }}
-    harness.io/service: {{ cookiecutter.service_name }}-api
+    app: {% raw %}{{ .Values.name }}{% endraw %}-api
+    app.kubernetes.io/name: {% raw %}{{ .Values.name }}{% endraw %}-api
+    app.kubernetes.io/part-of: {% raw %}{{ .Values.name }}{% endraw %}
+    version: {% raw %}{{ .Values.image.tag }}{% endraw %}
 spec:
-  replicas: 1
+  replicas: {% raw %}{{ .Values.replicaCount }}{% endraw %}
   selector:
     matchLabels:
-      app: {{ cookiecutter.service_name }}-api
+      app: {% raw %}{{ .Values.name }}{% endraw %}-api
   template:
     metadata:
       labels:
-        app: {{ cookiecutter.service_name }}-api
-        app.kubernetes.io/name: {{ cookiecutter.service_name }}-api
+        app: {% raw %}{{ .Values.name }}{% endraw %}-api
+        version: {% raw %}{{ .Values.image.tag }}{% endraw %}
     spec:
       containers:
         - name: api
-          image: <+artifact.image>
+          image: {% raw %}{{ .Values.image.repository }}:{{ .Values.image.tag }}{% endraw %}
           imagePullPolicy: Always
           ports:
             - name: http
-              containerPort: 8080
+              containerPort: {% raw %}{{ .Values.containerPort }}{% endraw %}
               protocol: TCP
           env:
             - name: NODE_ENV
-              value: production
+              value: {% raw %}{{ .Values.nodeEnv }}{% endraw %}
             - name: PORT
-              value: "8080"
+              value: {% raw %}"{{ .Values.containerPort }}"{% endraw %}
             - name: APP_VERSION
-              value: <+artifact.tag>
+              value: {% raw %}{{ .Values.image.tag }}{% endraw %}
           resources:
             requests:
-              memory: "128Mi"
-              cpu: "100m"
+              memory: {% raw %}{{ .Values.resources.requests.memory }}{% endraw %}
+              cpu: {% raw %}{{ .Values.resources.requests.cpu }}{% endraw %}
             limits:
-              memory: "256Mi"
-              cpu: "500m"
+              memory: {% raw %}{{ .Values.resources.limits.memory }}{% endraw %}
+              cpu: {% raw %}{{ .Values.resources.limits.cpu }}{% endraw %}
           readinessProbe:
             httpGet:
               path: /health
-              port: 8080
+              port: {% raw %}{{ .Values.containerPort }}{% endraw %}
             initialDelaySeconds: 10
             periodSeconds: 5
             failureThreshold: 3
           livenessProbe:
             httpGet:
               path: /health
-              port: 8080
+              port: {% raw %}{{ .Values.containerPort }}{% endraw %}
             initialDelaySeconds: 30
             periodSeconds: 10
             failureThreshold: 3

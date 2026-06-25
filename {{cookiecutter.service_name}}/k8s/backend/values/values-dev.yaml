@@ -1,0 +1,11 @@
+# Dev environment overrides
+replicaCount: 1
+nodeEnv: development
+
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "50m"
+  limits:
+    memory: "128Mi"
+    cpu: "250m"

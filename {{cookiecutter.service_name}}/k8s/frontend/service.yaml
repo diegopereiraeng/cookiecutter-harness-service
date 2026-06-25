@@ -1,17 +1,17 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ cookiecutter.service_name }}-web
-  namespace: {{ cookiecutter.harness_project }}
+  name: {% raw %}{{ .Values.name }}{% endraw %}-web
+  namespace: {% raw %}{{ .Values.namespace }}{% endraw %}
   labels:
-    app: {{ cookiecutter.service_name }}-web
-    app.kubernetes.io/name: {{ cookiecutter.service_name }}-web
+    app: {% raw %}{{ .Values.name }}{% endraw %}-web
+    app.kubernetes.io/name: {% raw %}{{ .Values.name }}{% endraw %}-web
 spec:
   selector:
-    app: {{ cookiecutter.service_name }}-web
+    app: {% raw %}{{ .Values.name }}{% endraw %}-web
   ports:
     - name: http
       protocol: TCP
       port: 80
-      targetPort: 80
-  type: ClusterIP
+      targetPort: {% raw %}{{ .Values.containerPort }}{% endraw %}
+  type: {% raw %}{{ .Values.service.type }}{% endraw %}

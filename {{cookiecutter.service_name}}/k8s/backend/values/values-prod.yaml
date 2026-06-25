@@ -1,0 +1,11 @@
+# Production environment overrides
+replicaCount: 2
+nodeEnv: production
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "200m"
+  limits:
+    memory: "512Mi"
+    cpu: "1000m"

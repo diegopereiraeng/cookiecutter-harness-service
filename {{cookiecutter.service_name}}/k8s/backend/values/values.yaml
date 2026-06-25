@@ -1,0 +1,22 @@
+# Base values — Harness expressions are resolved before Go template rendering
+name: {{ cookiecutter.service_name }}
+namespace: {{ cookiecutter.harness_project }}
+
+image:
+  repository: <+artifact.image>   # resolved by Harness at deploy time
+  tag: <+artifact.tag>            # resolved by Harness at deploy time
+
+replicaCount: 1
+containerPort: 8080
+nodeEnv: production
+
+service:
+  type: ClusterIP
+
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "500m"
